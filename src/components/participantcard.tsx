@@ -1,28 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { Participant } from "../db/db";
 
 export default function ParticipantCard({
-  fullname,
+  name,
   email,
   age,
   address,
-}: {
-  fullname: string;
-  email: string;
-  age: number;
-  address: {
-    street: string;
-    city: string;
-    state: string;
-    zip: string;
-  };
-}) {
+}: Participant) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div className='p-12 bg-gray-100 rounded-md space-y-7 text-lg'>
-      <h1>{fullname}</h1>
+      <h1>{name}</h1>
       <button
         className='p-2 rounded-md bg-blue-500 text-white'
         onClick={() => setIsExpanded(!isExpanded)}>

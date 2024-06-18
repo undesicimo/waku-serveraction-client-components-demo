@@ -1,13 +1,11 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { useState } from "react";
+import { Participant } from "../db/db";
+import ParticipantCard from "./participantcard";
 
-export default function SearchBar({
-  getParticipant,
-}: {
-  getParticipant: (id: string) => ReactNode;
-}) {
-  const [participant, setParticipant] = useState<ReactNode>(null);
+export default function SearchBar() {
+  const [participant, setParticipant] = useState<Participant | null>(null);
   const [inputValue, setInputValue] = useState("");
   return (
     <section className='flex flex-col gap-2 p-4'>
@@ -22,17 +20,21 @@ export default function SearchBar({
         />
         <button
           className='p-2 border border-gray-300 rounded-md hover:bg-gray-200 hover:text-gray-900 hover:scale-105 text-sm'
-          onClick={() => {
+          onClick={async () => {
             if (inputValue === "") {
               return;
             }
-            const participant = getParticipant(inputValue);
+            const res = await fetch(
+              "https://jsonplaceholder.typicode.com/participants/?id=" +
+                inputValue
+            );
+            const participant = (await res.json()) as Participant;
             setParticipant(participant);
           }}>
           Search Participant
         </button>
       </div>
-      {participant}
+      {participant && <ParticipantCard {...participant} />}
     </section>
   );
 }

@@ -1,4 +1,17 @@
 import fs from "fs";
+
+export type Participant = {
+  name: string;
+  email: string;
+  age: number;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
+  };
+};
+
 class DB {
   db;
   data;

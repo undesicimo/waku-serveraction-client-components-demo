@@ -9,7 +9,7 @@ export function getParticipant(id: string) {
 
   return (
     <ParticipantCard
-      fullname={participant.name}
+      name={participant.name}
       email={participant.email}
       age={participant.age}
       address={participant.address}

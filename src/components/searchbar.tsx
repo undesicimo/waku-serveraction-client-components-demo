@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
-export default function SearchBar({ getParticipant }: { getParticipant: any }) {
-  const [participant, setParticipant] = useState(null);
+export default function SearchBar({
+  getParticipant,
+}: {
+  getParticipant: (id: string) => ReactNode;
+}) {
+  const [participant, setParticipant] = useState<ReactNode>(null);
   const [inputValue, setInputValue] = useState("");
   return (
     <section className='flex flex-col gap-2 p-4'>

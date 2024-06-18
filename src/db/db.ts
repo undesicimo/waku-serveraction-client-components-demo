@@ -1,7 +1,7 @@
 import fs from "fs";
 class DB {
-  db: any;
-  data: any;
+  db;
+  data;
 
   constructor() {
     this.db = fs.readFileSync(
